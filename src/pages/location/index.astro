@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import locationMap from "../../assets/images/location-map.webp";
+
+const title = "Location | Lumina Stay";
+const description =
+    "Our guide to Perth's quiet luxury spots, mostly focused around Kings Park and the river.";
+---
+
+<BaseLayout title={title} description={description}>
+    <section class="py-32 px-6 bg-background">
+        <div class="max-w-4xl mx-auto text-center space-y-6 mb-24">
+            <span
+                class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+                >The Neighbourhood</span
+            >
+            <h1 class="font-serif text-5xl md:text-6xl text-text">
+                Around Perth
+            </h1>
+            <p
+                class="text-text/80 font-light text-lg max-w-2xl mx-auto leading-relaxed"
+            >
+                Situated on the edge of Kings Park and the Swan River, Lumina
+                Stay offers a vantage point for exploring the quieter side of
+                the city.
+            </p>
+        </div>
+
+        <div
+            class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start"
+        >
+            <div class="space-y-8 sticky top-32">
+                <h2 class="font-serif text-3xl">A Perfect 24 Hours</h2>
+                <div
+                    class="space-y-8 relative border-l border-neutral-200 ml-3 pl-8 pb-4"
+                >
+                    <div class="relative">
+                        <span
+                            class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-accent-sage border-4 border-background"
+                        ></span>
+                        <h3 class="font-serif text-xl">08:00 AM</h3>
+                        <p
+                            class="text-sm font-bold uppercase tracking-widest text-accent-bronze mt-1 mb-2"
+                        >
+                            Morning Walk
+                        </p>
+                        <p class="text-text/80 font-light">
+                            Start with a coffee from *Telegram Coffee* at the
+                            State Buildings, then walk up to Kings Park for
+                            sunrise views over the city.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <span
+                            class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-neutral-300 border-4 border-background"
+                        ></span>
+                        <h3 class="font-serif text-xl">12:30 PM</h3>
+                        <p
+                            class="text-sm font-bold uppercase tracking-widest text-accent-bronze mt-1 mb-2"
+                        >
+                            Lunch by the Water
+                        </p>
+                        <p class="text-text/80 font-light">
+                            Head to Elizabeth Quay. *The Island* offers casual
+                            dining with stunning river views, or try *Hearth*
+                            for something more refined.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <span
+                            class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-neutral-300 border-4 border-background"
+                        ></span>
+                        <h3 class="font-serif text-xl">04:00 PM</h3>
+                        <p
+                            class="text-sm font-bold uppercase tracking-widest text-accent-bronze mt-1 mb-2"
+                        >
+                            Cultural Afternoon
+                        </p>
+                        <p class="text-text/80 font-light">
+                            Visit the *Art Gallery of WA* or simply wander the
+                            heritage streets of the West End.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <span
+                            class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-neutral-300 border-4 border-background"
+                        ></span>
+                        <h3 class="font-serif text-xl">07:00 PM</h3>
+                        <p
+                            class="text-sm font-bold uppercase tracking-widest text-accent-bronze mt-1 mb-2"
+                        >
+                            Dinner & Drinks
+                        </p>
+                        <p class="text-text/80 font-light">
+                            Finish the day at *Wildflower* for an unforgettable
+                            meal featuring native ingredients, followed by a
+                            nightcap at *Foxtrot Unicorn*.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-neutral-200 h-[600px] w-full rounded-sm overflow-hidden relative"
+            >
+                <Image
+                    src={locationMap}
+                    alt="Map of Perth locations"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+    </section>
+</BaseLayout>

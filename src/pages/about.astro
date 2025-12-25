@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "About | Lumina Stay";
+const description = "The story of quiet luxury in the heart of Perth.";
+---
+
+<BaseLayout title={title} description={description}>
+    <section class="py-32 px-6">
+        <div class="max-w-3xl mx-auto space-y-12">
+            <div class="text-center space-y-6">
+                <span
+                    class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+                    >Our Story</span
+                >
+                <h1 class="font-serif text-5xl md:text-6xl text-text">
+                    The Art of Stillness
+                </h1>
+            </div>
+
+            <div
+                class="prose prose-neutral max-w-none font-light leading-relaxed text-text/80"
+            >
+                <p
+                    class="first-letter:text-5xl first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-accent-bronze"
+                >
+                    Lumina Stay was born from a desire to create a
+                    counterbalance to the frantic pace of modern travel. We
+                    believe that accommodation should be more than just a place
+                    to sleep; it should be a space that restores you.
+                </p>
+                <p>
+                    Located in a heritage-listed building on the fringe of the
+                    CBD, we have stripped back the unnecessary to focus on what
+                    truly matters: silence, space, and sunlight. Our philosophy
+                    of "Quiet Luxury" means we favor texture over pattern,
+                    personal service over automation, and timeless quality over
+                    fleeting trends.
+                </p>
+                <p>
+                    Whether you are visiting Perth for business or retreat, we
+                    invite you to experience a different kind of hospitality.
+                    One where every interaction is intentional, and your privacy
+                    is paramount.
+                </p>
+            </div>
+
+            <div
+                class="aspect-video bg-neutral-200 rounded-sm w-full flex items-center justify-center text-text/20"
+            >
+                Image: Founder / Property Interior
+            </div>
+        </div>
+    </section>
+</BaseLayout>

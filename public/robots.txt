@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amplifycreativelab.github.io/lumina-stay/sitemap-index.xml

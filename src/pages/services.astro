@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Concierge Services | Lumina Stay";
+const description =
+    "Bespoke experiences and personalized service for your stay in Perth.";
+
+const services = [
+    {
+        title: "Personal Concierge",
+        description:
+            "From restaurant reservations at Perth's most exclusive tables to private gallery viewings, our team handles every detail.",
+        icon: "🛎️",
+    },
+    {
+        title: "Private Transport",
+        description:
+            "Luxury airport transfers and private chauffeurs available upon request for seamless travel throughout Western Australia.",
+        icon: "🚗",
+    },
+    {
+        title: "In-Suite Dining",
+        description:
+            "Enjoy a curated menu of local delicacies and fine wines delivered directly to your suite, day or night.",
+        icon: "🍽️",
+    },
+    {
+        title: "Wellness & Spa",
+        description:
+            "In-room massage therapies and access to our partner wellness centers for yoga, pilates, and holistic treatments.",
+        icon: "🌿",
+    },
+];
+---
+
+<BaseLayout title={title} description={description}>
+    <section class="py-32 px-6 bg-background">
+        <div class="max-w-4xl mx-auto text-center space-y-6 mb-24">
+            <span
+                class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+                >Bespoke Service</span
+            >
+            <h1 class="font-serif text-5xl md:text-6xl text-text">
+                Concierge & Experiences
+            </h1>
+            <p
+                class="text-text/80 font-light text-lg max-w-2xl mx-auto leading-relaxed"
+            >
+                We believe that luxury is personal. Our dedicated team is here
+                to curate a stay that is uniquely yours, handling every request
+                with discretion and care.
+            </p>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            {
+                services.map((service) => (
+                    <div class="flex gap-6 p-8 border border-neutral-100 bg-white rounded-sm hover:border-accent-bronze/30 transition-colors group">
+                        <div class="text-4xl group-hover:scale-110 transition-transform duration-500">
+                            {service.icon}
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="font-serif text-2xl text-text">
+                                {service.title}
+                            </h3>
+                            <p class="text-text/70 font-light leading-relaxed">
+                                {service.description}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="text-center mt-24">
+            <p class="text-text/80 mb-8 font-light">Have a specific request?</p>
+            <a
+                href={`${import.meta.env.BASE_URL}/contact`}
+                class="bg-cta text-white px-8 py-4 rounded-sm uppercase tracking-widest text-xs font-bold hover:bg-opacity-90 transition-all inline-block"
+            >
+                Contact Concierge
+            </a>
+        </div>
+    </section>
+</BaseLayout>

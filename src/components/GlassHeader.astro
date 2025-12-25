@@ -1,0 +1,54 @@
+---
+
+---
+
+<header
+    class="fixed top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-md bg-white/70 border-b border-white/20"
+>
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <a
+            href={import.meta.env.BASE_URL}
+            class="text-2xl font-serif text-text tracking-wide font-medium z-50 relative"
+        >
+            Lumina Stay
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav
+            class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest text-text/80"
+        >
+            <a
+                href={`${import.meta.env.BASE_URL}rooms`}
+                class="hover:text-accent-bronze transition-colors">Suites</a
+            >
+            <a
+                href={`${import.meta.env.BASE_URL}amenities`}
+                class="hover:text-accent-bronze transition-colors">Amenities</a
+            >
+            <a
+                href={`${import.meta.env.BASE_URL}location`}
+                class="hover:text-accent-bronze transition-colors">Location</a
+            >
+            <a
+                href={`${import.meta.env.BASE_URL}contact`}
+                class="hover:text-accent-bronze transition-colors">Contact</a
+            >
+        </nav>
+
+        <!-- CTA -->
+        <a
+            href={`${import.meta.env.BASE_URL}contact`}
+            class="hidden md:inline-block bg-cta text-white px-6 py-3 rounded-sm text-xs uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-sm"
+        >
+            Check Availability
+        </a>
+
+        <!-- Mobile Menu Toggle (Simplified placeholder) -->
+        <button class="md:hidden text-text p-2" aria-label="Menu">
+            <span class="block w-6 h-0.5 bg-current mb-1"></span>
+            <span class="block w-6 h-0.5 bg-current mb-1"></span>
+            <span class="block w-6 h-0.5 bg-current"></span>
+        </button>
+    </div>
+</header>

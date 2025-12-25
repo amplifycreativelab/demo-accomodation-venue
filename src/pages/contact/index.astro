@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EnquiryForm from "../../components/EnquiryForm.astro";
+
+const title = "Contact Us | Lumina Stay";
+const description =
+    "Enquire about a stay or contact our concierge for bespoke arrangements.";
+---
+
+<BaseLayout title={title} description={description}>
+    <section class="py-32 px-6 bg-background min-h-screen">
+        <div class="max-w-xl mx-auto space-y-12">
+            <div class="text-center space-y-6">
+                <span
+                    class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+                    >Enquiries</span
+                >
+                <h1 class="font-serif text-5xl text-text">Begin Your Stay</h1>
+                <p class="text-text/80 font-light leading-relaxed">
+                    We invite you to reach out with your dates and requirements.
+                    Our team will tailor a proposal for your visit to Perth.
+                </p>
+            </div>
+
+            <div
+                class="bg-white p-8 md:p-12 shadow-sm border border-neutral-100 rounded-sm"
+            >
+                <EnquiryForm />
+            </div>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center text-sm pt-8 border-t border-neutral-200"
+            >
+                <div class="space-y-1">
+                    <h3 class="font-serif text-lg">Concierge</h3>
+                    <p class="text-text/60">+61 (8) 9123 4567</p>
+                    <p class="text-text/60">hello@luminastay.demo</p>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="font-serif text-lg">Visit</h3>
+                    <p class="text-text/60">123 Riverview Terrace</p>
+                    <p class="text-text/60">Perth, WA 6000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

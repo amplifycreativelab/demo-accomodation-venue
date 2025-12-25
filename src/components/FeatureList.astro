@@ -1,0 +1,25 @@
+---
+interface Props {
+    features: string[];
+    columns?: 2 | 3 | 4;
+}
+
+const { features, columns = 3 } = Astro.props;
+
+const gridClass = {
+    2: "md:grid-cols-2",
+    3: "md:grid-cols-3",
+    4: "md:grid-cols-4",
+}[columns];
+---
+
+<ul class={`grid grid-cols-1 ${gridClass} gap-y-4 gap-x-8 list-none`}>
+    {
+        features.map((feature) => (
+            <li class="flex items-center gap-3 text-sm text-text/80 font-light">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-sage/60 shrink-0" />
+                {feature}
+            </li>
+        ))
+    }
+</ul>

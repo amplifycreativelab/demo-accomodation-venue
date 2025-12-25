@@ -1,0 +1,24 @@
+---
+interface Props {
+    quote: string;
+    author: string;
+    stayType?: string;
+}
+
+const { quote, author, stayType } = Astro.props;
+---
+
+<figure class="space-y-4 p-6 bg-background rounded-sm">
+    <blockquote
+        class="font-serif italic text-lg md:text-xl text-text leading-relaxed"
+    >
+        "{quote}"
+    </blockquote>
+    <figcaption class="flex flex-col">
+        <span
+            class="text-xs uppercase tracking-widest font-bold text-accent-sage"
+            >{author}</span
+        >
+        {stayType && <span class="text-xs text-text/50 mt-1">{stayType}</span>}
+    </figcaption>
+</figure>

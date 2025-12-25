@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RoomCard from '../../components/RoomCard.astro';
+import roomsData from '../../data/rooms.json';
+import { Image } from 'astro:assets';
+import gardenSuite from '../../assets/images/garden-suite-v2.webp';
+import riverView from '../../assets/images/river-view-loft-v2.webp';
+import terraceStudio from '../../assets/images/terrace-studio-v2.webp';
+
+const roomImages = {
+  "garden-suite": gardenSuite,
+  "river-view-loft": riverView,
+  "terrace-studio": terraceStudio
+};
+
+const title = "The Suites | Lumina Stay";
+const description = "Explore our curated selection of luxury suites in Perth.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="py-32 px-6 bg-background">
+    <div class="max-w-4xl mx-auto text-center space-y-6 mb-24">
+      <span class="text-accent-sage uppercase tracking-widest text-xs font-bold">Accommodations</span>
+      <h1 class="font-serif text-5xl md:text-6xl text-text">The Suites</h1>
+      <p class="text-text/80 font-light text-lg max-w-2xl mx-auto leading-relaxed">
+        Each of our suites is a distinct expression of quiet luxury, designed to offer a sanctuary from the bustle of the city.
+      </p>
+    </div>
+
+    <div class="max-w-7xl mx-auto space-y-32">
+      {roomsData.map((room, index) => (
+        <div class={`flex flex-col md:flex-row gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+          <div class="w-full md:w-1/2">
+             <div class="aspect-[4/5] bg-neutral-200 overflow-hidden rounded-sm relative group cursor-pointer">
+                  <Image src={roomImages[room.id as keyof typeof roomImages]} alt={room.name} class="w-full h-full object-cover" />
+             </div>
+          </div>
+          <div class="w-full md:w-1/2 space-y-8">
+             <div class="space-y-4">
+                <span class="text-accent-bronze text-sm uppercase tracking-widest block">From {room.priceRange}</span>
+                <h2 class="font-serif text-4xl text-text">{room.name}</h2>
+                <p class="text-text/80 leading-relaxed font-light">
+                  {room.description || "A beautiful suite designed for relaxation and comfort."}
+                </p>
+             </div>
+             
+             <div class="grid grid-cols-2 gap-4 border-t border-b border-neutral-200 py-6">
+                <div>
+                   <span class="block text-xs uppercase tracking-widest text-text/50 mb-1">Occupancy</span>
+                   <span class="text-sm font-medium">{room.sleeps} Guests</span>
+                </div>
+                 <div>
+                   <span class="block text-xs uppercase tracking-widest text-text/50 mb-1">Bed</span>
+                   <span class="text-sm font-medium">King / Queen</span> <!-- Add this to JSON later if needed -->
+                </div>
+             </div>
+
+             <div class="pt-2">
+                <a href={`${import.meta.env.BASE_URL}contact`} class="bg-cta text-white px-8 py-4 rounded-sm uppercase tracking-widest text-xs font-bold hover:bg-opacity-90 transition-all inline-block">
+                  Enquire About This Suite
+                </a>
+             </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FeatureList from "../../components/FeatureList.astro";
+import amenitiesData from "../../data/amenities.json";
+
+const title = "Amenities | Lumina Stay";
+const description =
+    "Discover the thoughtful details and premium amenities at Lumina Stay.";
+---
+
+<BaseLayout title={title} description={description}>
+    <section class="py-32 px-6 bg-background">
+        <div class="max-w-4xl mx-auto text-center space-y-6 mb-24">
+            <span
+                class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+                >The Experience</span
+            >
+            <h1 class="font-serif text-5xl md:text-6xl text-text">Amenities</h1>
+            <p
+                class="text-text/80 font-light text-lg max-w-2xl mx-auto leading-relaxed"
+            >
+                Curated for comfort. Designed for stillness. Every detail at
+                Lumina Stay is intentional.
+            </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto space-y-24">
+            <!-- In-Room -->
+            <div class="space-y-12">
+                <div class="border-l-2 border-accent-bronze pl-6">
+                    <h2 class="font-serif text-3xl text-text">
+                        In-Room Comforts
+                    </h2>
+                    <p class="text-text/60 mt-2 font-light">
+                        Everything you need for a restful sanctuary.
+                    </p>
+                </div>
+                <FeatureList features={amenitiesData.inRoom} columns={3} />
+            </div>
+
+            <!-- Property -->
+            <div class="space-y-12">
+                <div class="border-l-2 border-accent-sage pl-6">
+                    <h2 class="font-serif text-3xl text-text">
+                        Property Features
+                    </h2>
+                    <p class="text-text/60 mt-2 font-light">
+                        Spaces and services to enhance your stay.
+                    </p>
+                </div>
+                <FeatureList features={amenitiesData.property} columns={3} />
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 px-6 bg-white text-center">
+        <h2 class="font-serif text-3xl mb-8">Ready to experience stillness?</h2>
+        <a
+            href={`${import.meta.env.BASE_URL}contact`}
+            class="inline-block border-b border-text text-text pb-1 uppercase tracking-widest text-xs font-bold hover:text-accent-bronze hover:border-accent-bronze transition-all"
+        >
+            Check Availability
+        </a>
+    </section>
+</BaseLayout>

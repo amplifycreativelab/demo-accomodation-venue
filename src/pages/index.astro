@@ -1,0 +1,189 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RoomCard from "../components/RoomCard.astro";
+import FeatureList from "../components/FeatureList.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import EnquiryForm from "../components/EnquiryForm.astro";
+import roomsData from "../data/rooms.json";
+import amenitiesData from "../data/amenities.json";
+import testimonialData from "../data/testimonials.json";
+
+// Take the first 3 rooms for the homepage
+const featuredRooms = roomsData.slice(0, 3);
+
+import { Image } from "astro:assets";
+import homeHero from "../assets/images/home-hero.webp";
+import gardenSuite from "../assets/images/garden-suite-v2.webp";
+import riverView from "../assets/images/river-view-loft-v2.webp";
+import terraceStudio from "../assets/images/terrace-studio-v2.webp";
+
+const roomImages = {
+	"garden-suite": gardenSuite,
+	"river-view-loft": riverView,
+	"terrace-studio": terraceStudio,
+};
+---
+
+<BaseLayout title="Lumina Stay | Boutique Accommodation in Perth">
+	<!-- Hero Section -->
+	<section
+		class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
+	>
+		<!-- Placeholder Background Image -->
+		<div class="absolute inset-0 bg-gray-200 z-0">
+			<Image
+				src={homeHero}
+				alt="Lumina Stay Interior"
+				class="w-full h-full object-cover"
+			/>
+		</div>
+		<div class="absolute inset-0 bg-black/30 z-10"></div>
+
+		<div class="relative z-20 text-center text-white space-y-6 px-4">
+			<h1
+				class="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight"
+			>
+				Lumina Stay
+			</h1>
+			<p
+				class="text-lg md:text-xl font-light tracking-wide max-w-lg mx-auto"
+			>
+				Where the Swan River meets refined stillness.
+			</p>
+			<div class="pt-8">
+				<a
+					href="#enquiry"
+					class="bg-white text-cta px-8 py-4 rounded-sm uppercase tracking-widest text-sm font-medium hover:bg-neutral-100 transition-colors"
+				>
+					Check Availability
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Narrative Section -->
+	<section class="py-24 px-6">
+		<div class="max-w-2xl mx-auto text-center space-y-8">
+			<span
+				class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+				>The Experience</span
+			>
+			<h2 class="font-serif text-4xl text-text leading-tight">
+				Thoughtfully designed spaces for the modern traveler.
+			</h2>
+			<p class="text-text/80 leading-relaxed font-light">
+				Located in the heart of Perth, Lumina Stay offers a sanctuary of
+				calm. Every detail is curated to ensure your stay is as
+				effortless as it is memorable. Immerse yourself in quiet luxury,
+				just moments from Kings Park and the river.
+			</p>
+			<div>
+				<a
+					href={`${import.meta.env.BASE_URL}rooms`}
+					class="inline-block border-b border-accent-bronze text-accent-bronze pb-1 text-sm uppercase tracking-wider hover:text-text hover:border-text transition-all"
+				>
+					Discover the Suites
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Room Preview -->
+	<section class="py-24 px-6 bg-white">
+		<div class="max-w-7xl mx-auto">
+			<div class="flex justify-between items-end mb-12">
+				<h2 class="font-serif text-3xl">Curated Suites</h2>
+				<a
+					href={`${import.meta.env.BASE_URL}rooms`}
+					class="hidden md:inline-block text-sm uppercase tracking-widest text-text/60 hover:text-text transition-colors"
+					>View All</a
+				>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					featuredRooms.map((room) => (
+						<RoomCard
+							name={room.name}
+							priceRange={room.priceRange}
+							image={
+								roomImages[room.id as keyof typeof roomImages]
+							}
+							slug={room.slug}
+							features={room.features}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Amenities Snapshot -->
+	<section class="py-24 px-6 border-t border-neutral-100">
+		<div class="max-w-7xl mx-auto">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+				<div class="space-y-6">
+					<span
+						class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+						>Details</span
+					>
+					<h2 class="font-serif text-3xl">Effortless Comfort</h2>
+					<p class="text-text/80 font-light leading-relaxed">
+						We believe true luxury lies in the absence of friction.
+						From high-thread-count linens to our 24/7 virtual
+						concierge, every amenity is chosen to enhance your
+						stillness.
+					</p>
+					<div class="pt-4">
+						<a
+							href={`${import.meta.env.BASE_URL}amenities`}
+							class="text-xs uppercase tracking-widest font-bold border-b border-text/20 pb-1 hover:border-text transition-all"
+							>View All Amenities</a
+						>
+					</div>
+				</div>
+				<div>
+					<FeatureList
+						features={amenitiesData.inRoom.slice(0, 6)}
+						columns={2}
+					/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonials -->
+	<section class="py-24 px-6 bg-secondary/5">
+		<!-- slightly off-white if needed, or just keep white -->
+		<div class="max-w-7xl mx-auto">
+			<h2 class="font-serif text-3xl text-center mb-16">Guest Notes</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					testimonialData.map((t) => (
+						<TestimonialCard
+							quote={t.quote}
+							author={t.author}
+							stayType={t.stayType}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact / Enquiry -->
+	<section id="enquiry" class="py-24 px-6 bg-white">
+		<div class="max-w-xl mx-auto text-center space-y-6 mb-12">
+			<span
+				class="text-accent-sage uppercase tracking-widest text-xs font-bold"
+				>Availability</span
+			>
+			<h2 class="font-serif text-4xl">Begin Your Stay</h2>
+			<p class="text-text/80 font-light">
+				We prioritize bespoke service. Tell us your preferences, and we
+				will curate the perfect arrangement for you.
+			</p>
+		</div>
+		<EnquiryForm />
+	</section>
+</BaseLayout>

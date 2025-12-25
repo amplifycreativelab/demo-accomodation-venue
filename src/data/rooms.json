@@ -1,0 +1,44 @@
+[
+    {
+        "id": "garden-suite",
+        "name": "The Garden Suite",
+        "slug": "garden-suite",
+        "priceRange": "$280 - $350",
+        "sleeps": 2,
+        "features": [
+            "Private Courtyard",
+            "Rain Shower",
+            "King Bed"
+        ],
+        "image": "/images/garden-suite.webp",
+        "description": "A grounded sanctuary featuring a private walled garden and earthy tones."
+    },
+    {
+        "id": "river-view-loft",
+        "name": "River View Loft",
+        "slug": "river-view-loft",
+        "priceRange": "$350 - $450",
+        "sleeps": 2,
+        "features": [
+            "River Views",
+            "Freestanding Tub",
+            "California King"
+        ],
+        "image": "/images/river-view-loft.webp",
+        "description": "Elevated living with sweeping views of the Swan River and city skyline."
+    },
+    {
+        "id": "terrace-studio",
+        "name": "The Terrace Studio",
+        "slug": "terrace-studio",
+        "priceRange": "$320 - $390",
+        "sleeps": 2,
+        "features": [
+            "Expansive Balcony",
+            "Work Space",
+            "Kitchenette"
+        ],
+        "image": "/images/terrace-studio.webp",
+        "description": "Perfect for longer stays, offering indoor-outdoor flow and gentle breezes."
+    }
+]
