@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://amplifycreativelab.github.io',
-  base: '/accomodation/',
+  base: '/demo-accomodation-venue/',
 
   vite: {
     plugins: [tailwindcss()]
