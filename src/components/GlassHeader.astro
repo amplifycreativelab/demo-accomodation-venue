@@ -3,6 +3,7 @@
 ---
 
 <header
+    data-glass-header
     class="fixed top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-md bg-white/70 border-b border-white/20"
 >
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -44,11 +45,205 @@
             Check Availability
         </a>
 
-        <!-- Mobile Menu Toggle (Simplified placeholder) -->
-        <button class="md:hidden text-text p-2" aria-label="Menu">
+        <!-- Mobile Menu Toggle -->
+        <button
+            type="button"
+            data-mobile-menu-button
+            class="md:hidden text-text p-2"
+            aria-label="Open menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+        >
             <span class="block w-6 h-0.5 bg-current mb-1"></span>
             <span class="block w-6 h-0.5 bg-current mb-1"></span>
             <span class="block w-6 h-0.5 bg-current"></span>
         </button>
     </div>
+
+    <!-- Mobile Menu (Off-canvas) -->
+    <div
+        data-mobile-menu-overlay
+        class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-200 md:hidden"
+        aria-hidden="true"
+    >
+    </div>
+
+    <div
+        data-mobile-menu-panel
+        id="mobile-menu"
+        class="fixed top-0 right-0 h-dvh w-80 max-w-[85vw] bg-white/90 backdrop-blur-md border-l border-white/20 shadow-xl translate-x-full transition-transform duration-300 md:hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        aria-hidden="true"
+        inert
+    >
+        <div
+            class="px-6 py-5 flex items-center justify-between border-b border-white/20"
+        >
+            <span class="text-lg font-serif text-text">Menu</span>
+            <button
+                type="button"
+                data-mobile-menu-close
+                class="p-2 text-text"
+                aria-label="Close menu"
+            >
+                <svg
+                    class="w-6 h-6"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M18 6 6 18" />
+                    <path d="M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <nav
+            class="px-6 py-6 flex flex-col gap-6 text-sm uppercase tracking-widest text-text/90"
+        >
+            <a
+                href={`${import.meta.env.BASE_URL}rooms`}
+                class="hover:text-accent-bronze transition-colors">Suites</a
+            >
+            <a
+                href={`${import.meta.env.BASE_URL}amenities`}
+                class="hover:text-accent-bronze transition-colors">Amenities</a
+            >
+            <a
+                href={`${import.meta.env.BASE_URL}location`}
+                class="hover:text-accent-bronze transition-colors">Location</a
+            >
+            <a
+                href={`${import.meta.env.BASE_URL}contact`}
+                class="hover:text-accent-bronze transition-colors">Contact</a
+            >
+
+            <a
+                href={`${import.meta.env.BASE_URL}contact`}
+                class="mt-2 inline-block bg-cta text-white px-6 py-3 rounded-sm text-xs uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-sm text-center"
+            >
+                Check Availability
+            </a>
+        </nav>
+    </div>
+
+    <script is:inline>
+        (() => {
+            const root = document.querySelector("[data-glass-header]");
+            if (!root) return;
+
+            const button = root.querySelector("[data-mobile-menu-button]");
+            const overlay = root.querySelector("[data-mobile-menu-overlay]");
+            const panel = root.querySelector("[data-mobile-menu-panel]");
+            const close = root.querySelector("[data-mobile-menu-close]");
+
+            if (
+                !(button instanceof HTMLButtonElement) ||
+                !(overlay instanceof HTMLDivElement) ||
+                !(panel instanceof HTMLDivElement) ||
+                !(close instanceof HTMLButtonElement)
+            ) {
+                return;
+            }
+
+            const focusableSelector =
+                'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+            let lastActiveElement = null;
+
+            const isOpen = () => button.getAttribute("aria-expanded") === "true";
+
+            const setOpen = (open) => {
+                button.setAttribute("aria-expanded", open ? "true" : "false");
+                overlay.setAttribute("aria-hidden", open ? "false" : "true");
+                panel.setAttribute("aria-hidden", open ? "false" : "true");
+
+                if (open) {
+                    lastActiveElement = document.activeElement;
+                    overlay.classList.remove("opacity-0", "pointer-events-none");
+                    overlay.classList.add("opacity-100", "pointer-events-auto");
+                    panel.classList.remove("translate-x-full");
+                    panel.classList.add("translate-x-0");
+                    panel.removeAttribute("inert");
+                    document.body.style.overflow = "hidden";
+
+                    const firstFocusable = panel.querySelector(focusableSelector);
+                    (
+                        firstFocusable instanceof HTMLElement
+                            ? firstFocusable
+                            : close
+                    ).focus({ preventScroll: true });
+                    return;
+                }
+
+                overlay.classList.add("opacity-0", "pointer-events-none");
+                overlay.classList.remove("opacity-100", "pointer-events-auto");
+                panel.classList.add("translate-x-full");
+                panel.classList.remove("translate-x-0");
+                panel.setAttribute("inert", "");
+                document.body.style.overflow = "";
+
+                if (lastActiveElement instanceof HTMLElement) {
+                    lastActiveElement.focus({ preventScroll: true });
+                }
+            };
+
+            button.addEventListener("click", () => setOpen(!isOpen()));
+            close.addEventListener("click", () => setOpen(false));
+            overlay.addEventListener("click", () => setOpen(false));
+
+            panel.addEventListener("click", (event) => {
+                const target = event.target;
+                if (!(target instanceof HTMLElement)) return;
+                if (target.closest("a[href]")) setOpen(false);
+            });
+
+            document.addEventListener("keydown", (event) => {
+                if (!isOpen()) return;
+
+                if (event.key === "Escape") {
+                    event.preventDefault();
+                    setOpen(false);
+                    return;
+                }
+
+                if (event.key !== "Tab") return;
+
+                const focusables = Array.from(
+                    panel.querySelectorAll(focusableSelector),
+                ).filter((el) => el instanceof HTMLElement);
+                if (focusables.length === 0) return;
+
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+                const active = document.activeElement;
+
+                if (event.shiftKey) {
+                    if (active === first) {
+                        event.preventDefault();
+                        last.focus();
+                    }
+                    return;
+                }
+
+                if (active === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            });
+
+            const media = window.matchMedia("(min-width: 768px)");
+            media.addEventListener("change", (event) => {
+                if (event.matches) setOpen(false);
+            });
+
+            setOpen(false);
+        })();
+    </script>
 </header>
