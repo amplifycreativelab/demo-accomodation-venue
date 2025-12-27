@@ -4,13 +4,14 @@ import "@fontsource/inter";
 import "../styles/global.css";
 import GlassHeader from "../components/GlassHeader.astro";
 import Footer from "../components/Footer.astro";
+import DemoLayout from "./DemoLayout.astro";
 
 interface Props {
     title: string;
     description?: string;
 }
 
-const { title, description = "Lumina Stay - Quiet Luxury in Perth" } =
+const { title, description = "Lumina Stay - Quiet Luxury Concept Stay" } =
     Astro.props;
 ---
 
@@ -25,6 +26,7 @@ const { title, description = "Lumina Stay - Quiet Luxury in Perth" } =
             href={`${import.meta.env.BASE_URL}favicon.svg`}
         />
         <meta name="generator" content={Astro.generator} />
+        <meta name="robots" content="noindex, nofollow" />
 
         <!-- SEO -->
         <title>{title}</title>
@@ -44,61 +46,26 @@ const { title, description = "Lumina Stay - Quiet Luxury in Perth" } =
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content="/images/og-image.webp" />
 
-        <!-- Schema.org JSON-LD -->
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "LodgingBusiness",
-                "name": "Lumina Stay",
-                "image": "https://amplifycreativelab.github.io/lumina-stay/images/home-hero.webp",
-                "@id": "https://amplifycreativelab.github.io/lumina-stay",
-                "url": "https://amplifycreativelab.github.io/lumina-stay",
-                "telephone": "+61891234567",
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "123 Riverview Terrace",
-                    "addressLocality": "Perth",
-                    "addressRegion": "WA",
-                    "postalCode": "6000",
-                    "addressCountry": "AU"
-                },
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": -31.9505,
-                    "longitude": 115.8605
-                },
-                "priceRange": "$280-$450",
-                "amenityFeature": [
-                    {
-                        "@type": "LocationFeatureSpecification",
-                        "value": "True",
-                        "name": "Free Wi-Fi"
-                    },
-                    {
-                        "@type": "LocationFeatureSpecification",
-                        "value": "True",
-                        "name": "Concierge"
-                    }
-                ]
-            }
-        </script>
+        <!-- Non-indexed portfolio demo: intentionally no schema -->
     </head>
     <body
         class="antialiased text-text bg-background flex flex-col min-h-screen"
     >
-        <a
-            href="#main-content"
-            class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-white px-4 py-2 text-primary shadow-lg rounded-md"
-        >
-            Skip to content
-        </a>
+        <DemoLayout>
+            <a
+                href="#main-content"
+                class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 bg-white px-4 py-2 text-primary shadow-lg rounded-md"
+            >
+                Skip to content
+            </a>
 
-        <GlassHeader />
+            <GlassHeader />
 
-        <main id="main-content" class="flex-grow pt-20">
-            <slot />
-        </main>
+            <main id="main-content" class="flex-grow pt-20">
+                <slot />
+            </main>
 
-        <Footer />
+            <Footer />
+        </DemoLayout>
     </body>
 </html>
