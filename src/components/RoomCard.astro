@@ -12,27 +12,135 @@ interface Props {
 const { name, priceRange, image, slug } = Astro.props;
 ---
 
-<article class="group cursor-pointer">
+<article class="room-card group">
     <a href={`${import.meta.env.BASE_URL}rooms`} class="block">
-        <div
-            class="aspect-[4/5] bg-neutral-200 mb-4 overflow-hidden rounded-sm relative"
-        >
-            <Image
-                src={image}
-                alt={name}
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+        <!-- Image container -->
+        <div class="room-card__img-wrap">
+            <Image src={image} alt={name} class="room-card__img" />
+            <!-- Hover reveal overlay -->
+            <div class="room-card__overlay" aria-hidden="true">
+                <span class="room-card__view-btn">View Suite</span>
+            </div>
         </div>
-        <div class="flex justify-between items-baseline">
-            <h3
-                class="font-serif text-xl group-hover:text-accent-bronze transition-colors"
+
+        <!-- Meta -->
+        <div class="room-card__meta">
+            <h3 class="room-card__name">{name}</h3>
+            <span class="room-card__price">{priceRange}</span>
+        </div>
+        <div class="room-card__cta">
+            <span>Explore</span>
+            <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
             >
-                {name}
-            </h3>
-            <span class="text-sm text-text/60">{priceRange}</span>
-        </div>
-        <div class="mt-2 text-xs uppercase tracking-wider text-text/50">
-            See Details &rarr;
+                <path
+                    d="M2 6h8M7 3l3 3-3 3"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+            </svg>
         </div>
     </a>
 </article>
+
+<style>
+    .room-card {
+        cursor: pointer;
+    }
+
+    .room-card__img-wrap {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        margin-bottom: 16px;
+        background: #e8e4dc;
+    }
+
+    .room-card__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .room-card:hover .room-card__img {
+        transform: scale(1.06);
+    }
+
+    .room-card__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(22, 39, 25, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .room-card:hover .room-card__overlay {
+        opacity: 1;
+    }
+
+    .room-card__view-btn {
+        color: white;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        padding: 10px 22px;
+        transform: translateY(6px);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .room-card:hover .room-card__view-btn {
+        transform: translateY(0);
+    }
+
+    .room-card__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 6px;
+    }
+
+    .room-card__name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #1e2022;
+        transition: color 0.2s ease;
+    }
+
+    .room-card:hover .room-card__name {
+        color: #8b6b47;
+    }
+
+    .room-card__price {
+        font-size: 12px;
+        color: rgba(30, 32, 34, 0.45);
+        font-weight: 300;
+    }
+
+    .room-card__cta {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(30, 32, 34, 0.4);
+        transition: color 0.2s ease;
+    }
+
+    .room-card:hover .room-card__cta {
+        color: #8b6b47;
+    }
+</style>

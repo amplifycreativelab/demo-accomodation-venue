@@ -2,131 +2,134 @@
 
 ---
 
-<header
-    data-glass-header
-    class="fixed top-0 left-0 w-full z-40 transition-all duration-300 backdrop-blur-md bg-white/70 border-b border-white/20"
->
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <!-- Logo -->
+<header data-glass-header class="fixed top-0 left-0 w-full z-40">
+    <div
+        class="header-inner max-w-screen-xl mx-auto px-6 md:px-10 h-[72px] flex items-center justify-between"
+    >
+        <!-- Wordmark -->
         <a
             href={import.meta.env.BASE_URL}
-            class="text-2xl font-serif text-text tracking-wide font-medium z-50 relative"
+            class="header-logo font-serif text-xl tracking-wide font-normal leading-none z-50 relative"
+            aria-label="Lumina Stay — Home"
         >
-            Lumina Stay
+            Lumina <em
+                class="header-logo__stay not-italic font-light opacity-60 italic"
+                >Stay</em
+            >
         </a>
 
         <!-- Desktop Nav -->
         <nav
-            class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest text-text/80"
+            class="hidden md:flex items-center gap-10"
+            aria-label="Main navigation"
         >
-            <a
-                href={`${import.meta.env.BASE_URL}rooms`}
-                class="hover:text-accent-bronze transition-colors">Suites</a
+            <a href={`${import.meta.env.BASE_URL}rooms`} class="header-nav-link"
+                >Suites</a
             >
             <a
                 href={`${import.meta.env.BASE_URL}amenities`}
-                class="hover:text-accent-bronze transition-colors">Amenities</a
+                class="header-nav-link">Amenities</a
             >
             <a
                 href={`${import.meta.env.BASE_URL}location`}
-                class="hover:text-accent-bronze transition-colors">Location</a
+                class="header-nav-link">Location</a
             >
             <a
                 href={`${import.meta.env.BASE_URL}contact`}
-                class="hover:text-accent-bronze transition-colors">Contact</a
+                class="header-nav-link">Contact</a
             >
         </nav>
 
         <!-- CTA -->
         <a
             href={`${import.meta.env.BASE_URL}contact`}
-            class="hidden md:inline-block bg-cta text-white px-6 py-3 rounded-sm text-xs uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-sm"
+            class="hidden md:inline-flex header-cta text-[10px] uppercase tracking-[0.14em] font-semibold px-6 py-3 transition-all duration-300"
         >
             Check Availability
         </a>
 
-        <!-- Mobile Menu Toggle -->
+        <!-- Mobile toggle -->
         <button
             type="button"
             data-mobile-menu-button
-            class="md:hidden text-text p-2"
-            aria-label="Open menu"
+            class="md:hidden p-2 flex flex-col gap-[5px]"
+            aria-label="Open navigation menu"
             aria-controls="mobile-menu"
             aria-expanded="false"
         >
-            <span class="block w-6 h-0.5 bg-current mb-1"></span>
-            <span class="block w-6 h-0.5 bg-current mb-1"></span>
-            <span class="block w-6 h-0.5 bg-current"></span>
+            <span
+                class="header-burger-line block w-5 h-[1.5px] transition-all duration-200"
+            ></span>
+            <span
+                class="header-burger-line block w-5 h-[1.5px] transition-all duration-200"
+            ></span>
         </button>
     </div>
 
-    <!-- Mobile Menu (Off-canvas) -->
+    <!-- Mobile overlay -->
     <div
         data-mobile-menu-overlay
-        class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-200 md:hidden"
+        class="fixed inset-0 bg-black/20 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
         aria-hidden="true"
     >
     </div>
 
+    <!-- Mobile panel -->
     <div
         data-mobile-menu-panel
         id="mobile-menu"
-        class="fixed top-0 right-0 h-dvh w-80 max-w-[85vw] bg-white/90 backdrop-blur-md border-l border-white/20 shadow-xl translate-x-full transition-transform duration-300 md:hidden"
+        class="fixed top-0 right-0 h-dvh w-72 max-w-[82vw] bg-[#F8F5EF] border-l border-black/8 shadow-2xl translate-x-full transition-transform duration-300 md:hidden"
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label="Navigation menu"
         aria-hidden="true"
         inert
     >
         <div
-            class="px-6 py-5 flex items-center justify-between border-b border-white/20"
+            class="px-7 py-6 flex items-center justify-between border-b border-black/6"
         >
-            <span class="text-lg font-serif text-text">Menu</span>
+            <span class="font-serif text-lg text-[#1E2022]">Menu</span>
             <button
                 type="button"
                 data-mobile-menu-close
-                class="p-2 text-text"
-                aria-label="Close menu"
+                class="p-2 text-[#1E2022] opacity-50 hover:opacity-100 transition-opacity"
+                aria-label="Close navigation menu"
             >
                 <svg
-                    class="w-6 h-6"
-                    viewBox="0 0 24 24"
+                    class="w-5 h-5"
+                    viewBox="0 0 20 20"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-width="1.5"
                     stroke-linecap="round"
-                    stroke-linejoin="round"
                     aria-hidden="true"
                 >
-                    <path d="M18 6 6 18" />
-                    <path d="M6 6l12 12" />
+                    <path d="M15 5L5 15M5 5l10 10"></path>
                 </svg>
             </button>
         </div>
-
         <nav
-            class="px-6 py-6 flex flex-col gap-6 text-sm uppercase tracking-widest text-text/90"
+            class="px-7 py-8 flex flex-col gap-6"
+            aria-label="Mobile navigation"
         >
-            <a
-                href={`${import.meta.env.BASE_URL}rooms`}
-                class="hover:text-accent-bronze transition-colors">Suites</a
+            <a href={`${import.meta.env.BASE_URL}rooms`} class="mobile-nav-link"
+                >Suites</a
             >
             <a
                 href={`${import.meta.env.BASE_URL}amenities`}
-                class="hover:text-accent-bronze transition-colors">Amenities</a
+                class="mobile-nav-link">Amenities</a
             >
             <a
                 href={`${import.meta.env.BASE_URL}location`}
-                class="hover:text-accent-bronze transition-colors">Location</a
+                class="mobile-nav-link">Location</a
             >
             <a
                 href={`${import.meta.env.BASE_URL}contact`}
-                class="hover:text-accent-bronze transition-colors">Contact</a
+                class="mobile-nav-link">Contact</a
             >
-
             <a
                 href={`${import.meta.env.BASE_URL}contact`}
-                class="mt-2 inline-block bg-cta text-white px-6 py-3 rounded-sm text-xs uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-sm text-center"
+                class="mt-2 inline-block bg-[#162719] text-white px-6 py-4 text-center text-[10px] uppercase tracking-[0.14em] font-semibold"
             >
                 Check Availability
             </a>
@@ -138,112 +141,169 @@
             const root = document.querySelector("[data-glass-header]");
             if (!root) return;
 
+            // ── Always-visible frosted glass header ──
+            root.style.background = "rgba(248,245,239,0.95)";
+            root.style.backdropFilter = "blur(20px) saturate(160%)";
+            root.style.webkitBackdropFilter = "blur(20px) saturate(160%)";
+            root.style.borderBottom = "1px solid rgba(30,32,34,0.08)";
+            root.style.boxShadow = "0 2px 24px rgba(0,0,0,0.06)";
+
+            const logo = root.querySelector(".header-logo");
+            if (logo) logo.style.color = "#1E2022";
+
+            root.querySelectorAll(".header-nav-link").forEach((l) => {
+                l.style.color = "rgba(30,32,34,0.70)";
+            });
+
+            root.querySelectorAll(".header-burger-line").forEach((l) => {
+                l.style.background = "#1E2022";
+            });
+
+            const cta = root.querySelector(".header-cta");
+            if (cta) {
+                cta.style.background = "#162719";
+                cta.style.color = "#fff";
+                cta.style.border = "none";
+                cta.style.backdropFilter = "none";
+            }
+
+            // ── Mobile menu ──
             const button = root.querySelector("[data-mobile-menu-button]");
             const overlay = root.querySelector("[data-mobile-menu-overlay]");
             const panel = root.querySelector("[data-mobile-menu-panel]");
             const close = root.querySelector("[data-mobile-menu-close]");
 
-            if (
-                !(button instanceof HTMLButtonElement) ||
-                !(overlay instanceof HTMLDivElement) ||
-                !(panel instanceof HTMLDivElement) ||
-                !(close instanceof HTMLButtonElement)
-            ) {
-                return;
-            }
+            if (!button || !overlay || !panel || !close) return;
 
-            const focusableSelector =
-                'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-            let lastActiveElement = null;
-
-            const isOpen = () => button.getAttribute("aria-expanded") === "true";
+            const focusable = "a[href], button:not([disabled])";
+            let lastFocus = null;
+            const opened = () =>
+                button.getAttribute("aria-expanded") === "true";
 
             const setOpen = (open) => {
                 button.setAttribute("aria-expanded", open ? "true" : "false");
-                overlay.setAttribute("aria-hidden", open ? "false" : "true");
-                panel.setAttribute("aria-hidden", open ? "false" : "true");
+                overlay.setAttribute("aria-hidden", !open + "");
+                panel.setAttribute("aria-hidden", !open + "");
 
                 if (open) {
-                    lastActiveElement = document.activeElement;
-                    overlay.classList.remove("opacity-0", "pointer-events-none");
-                    overlay.classList.add("opacity-100", "pointer-events-auto");
-                    panel.classList.remove("translate-x-full");
-                    panel.classList.add("translate-x-0");
+                    lastFocus = document.activeElement;
+                    overlay.classList.replace("opacity-0", "opacity-100");
+                    overlay.classList.replace(
+                        "pointer-events-none",
+                        "pointer-events-auto",
+                    );
+                    panel.classList.replace(
+                        "translate-x-full",
+                        "translate-x-0",
+                    );
                     panel.removeAttribute("inert");
                     document.body.style.overflow = "hidden";
-
-                    const firstFocusable = panel.querySelector(focusableSelector);
-                    (
-                        firstFocusable instanceof HTMLElement
-                            ? firstFocusable
-                            : close
-                    ).focus({ preventScroll: true });
-                    return;
-                }
-
-                overlay.classList.add("opacity-0", "pointer-events-none");
-                overlay.classList.remove("opacity-100", "pointer-events-auto");
-                panel.classList.add("translate-x-full");
-                panel.classList.remove("translate-x-0");
-                panel.setAttribute("inert", "");
-                document.body.style.overflow = "";
-
-                if (lastActiveElement instanceof HTMLElement) {
-                    lastActiveElement.focus({ preventScroll: true });
+                    const first = panel.querySelector(focusable);
+                    (first || close).focus({ preventScroll: true });
+                } else {
+                    overlay.classList.replace("opacity-100", "opacity-0");
+                    overlay.classList.replace(
+                        "pointer-events-auto",
+                        "pointer-events-none",
+                    );
+                    panel.classList.replace(
+                        "translate-x-0",
+                        "translate-x-full",
+                    );
+                    panel.setAttribute("inert", "");
+                    document.body.style.overflow = "";
+                    if (lastFocus) lastFocus.focus({ preventScroll: true });
                 }
             };
 
-            button.addEventListener("click", () => setOpen(!isOpen()));
+            button.addEventListener("click", () => setOpen(!opened()));
             close.addEventListener("click", () => setOpen(false));
             overlay.addEventListener("click", () => setOpen(false));
-
-            panel.addEventListener("click", (event) => {
-                const target = event.target;
-                if (!(target instanceof HTMLElement)) return;
-                if (target.closest("a[href]")) setOpen(false);
+            panel.addEventListener("click", (e) => {
+                if (e.target.closest("a[href]")) setOpen(false);
             });
 
-            document.addEventListener("keydown", (event) => {
-                if (!isOpen()) return;
-
-                if (event.key === "Escape") {
-                    event.preventDefault();
+            document.addEventListener("keydown", (e) => {
+                if (!opened()) return;
+                if (e.key === "Escape") {
+                    e.preventDefault();
                     setOpen(false);
                     return;
                 }
-
-                if (event.key !== "Tab") return;
-
-                const focusables = Array.from(
-                    panel.querySelectorAll(focusableSelector),
-                ).filter((el) => el instanceof HTMLElement);
-                if (focusables.length === 0) return;
-
-                const first = focusables[0];
-                const last = focusables[focusables.length - 1];
-                const active = document.activeElement;
-
-                if (event.shiftKey) {
-                    if (active === first) {
-                        event.preventDefault();
-                        last.focus();
-                    }
-                    return;
-                }
-
-                if (active === last) {
-                    event.preventDefault();
+                if (e.key !== "Tab") return;
+                const els = [...panel.querySelectorAll(focusable)];
+                if (!els.length) return;
+                const first = els[0],
+                    last = els[els.length - 1],
+                    active = document.activeElement;
+                if (e.shiftKey && active === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && active === last) {
+                    e.preventDefault();
                     first.focus();
                 }
             });
 
-            const media = window.matchMedia("(min-width: 768px)");
-            media.addEventListener("change", (event) => {
-                if (event.matches) setOpen(false);
-            });
-
+            window
+                .matchMedia("(min-width: 768px)")
+                .addEventListener("change", (e) => {
+                    if (e.matches) setOpen(false);
+                });
             setOpen(false);
         })();
     </script>
 </header>
+
+<style>
+    /* Base header — no default bg so hero bleeds through */
+    [data-glass-header] {
+        transition:
+            background 320ms ease,
+            border-bottom 320ms ease,
+            box-shadow 320ms ease;
+    }
+
+    /* ── Nav links ── */
+    .header-nav-link {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        text-decoration: none;
+        transition:
+            color 200ms ease,
+            opacity 200ms ease;
+    }
+
+    .header-nav-link:hover {
+        opacity: 1 !important;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    /* ── Mobile nav links ── */
+    .mobile-nav-link {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        color: rgba(30, 32, 34, 0.7);
+        transition: color 180ms;
+    }
+
+    .mobile-nav-link:hover {
+        color: #8b6b47;
+    }
+
+    /* ── CTA ── */
+    .header-cta {
+        text-decoration: none;
+        letter-spacing: 0.14em;
+        transition:
+            background 200ms ease,
+            color 200ms ease,
+            border 200ms ease;
+    }
+</style>

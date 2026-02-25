@@ -1,22 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-    --color-background: #F9F7F2;
-    --color-text: #2C2E30;
-    --color-accent-sage: #5E6554;
-    --color-accent-bronze: #9A7B5C;
-    --color-cta: #1B3022;
+    /* ── Palette ── */
+    --color-background: #F8F5EF;
+    --color-surface: #FDFAF4;
+    --color-text: #1E2022;
+    --color-text-muted: #6B6860;
+    --color-accent-sage: #4E5846;
+    --color-accent-bronze: #8B6B47;
+    --color-accent-bronze-light: #C4A07C;
+    --color-cta: #162719;
+    --color-linen: #EDE8DF;
 
-    --font-serif: "Playfair Display", serif;
-    --font-sans: "Inter", sans-serif;
+    /* ── Type ── */
+    --font-serif: "Playfair Display", Georgia, serif;
+    --font-sans: "Jost", "Inter", system-ui, sans-serif;
+    --font-mono: "DM Mono", monospace;
+
+    /* ── Timing ── */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out-smooth: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* ── Reset & base ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* intentionally NOT setting margin: 0 here — it would override Tailwind's mx-auto */
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--color-background);
     color: var(--color-text);
     font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.7;
+    font-feature-settings: "kern" 1, "liga" 1;
+    /* Subtle grain overlay via CSS gradient noise trick */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
+/* ── Typography scale ── */
 h1,
 h2,
 h3,
@@ -24,4 +56,66 @@ h4,
 h5,
 h6 {
     font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+}
+
+p {
+    font-weight: 300;
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-linen);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 107, 71, 0.35);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 107, 71, 0.55);
+}
+
+/* ── Selection ── */
+::selection {
+    background: rgba(139, 107, 71, 0.18);
+    color: var(--color-text);
+}
+
+/* ── Scroll-reveal utility ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.75s var(--ease-out-expo),
+        transform 0.75s var(--ease-out-expo);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.reveal--delay-1 {
+    transition-delay: 0.10s;
+}
+
+.reveal--delay-2 {
+    transition-delay: 0.20s;
+}
+
+.reveal--delay-3 {
+    transition-delay: 0.32s;
+}
+
+.reveal--delay-4 {
+    transition-delay: 0.44s;
 }

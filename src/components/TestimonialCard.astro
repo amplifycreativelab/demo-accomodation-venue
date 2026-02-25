@@ -8,17 +8,73 @@ interface Props {
 const { quote, author, stayType } = Astro.props;
 ---
 
-<figure class="space-y-4 p-6 bg-background rounded-sm">
-    <blockquote
-        class="font-serif italic text-lg md:text-xl text-text leading-relaxed"
-    >
-        "{quote}"
+<figure class="testimonial-card">
+    <div class="testimonial-card__mark" aria-hidden="true">"</div>
+    <blockquote class="testimonial-card__quote">
+        {quote}
     </blockquote>
-    <figcaption class="flex flex-col">
-        <span
-            class="text-xs uppercase tracking-widest font-bold text-accent-sage"
-            >{author}</span
-        >
-        {stayType && <span class="text-xs text-text/50 mt-1">{stayType}</span>}
+    <figcaption class="testimonial-card__caption">
+        <span class="testimonial-card__author">{author}</span>
+        {stayType && <span class="testimonial-card__stay">{stayType}</span>}
     </figcaption>
 </figure>
+
+<style>
+    .testimonial-card {
+        position: relative;
+        padding: 36px 32px 32px;
+        background: #f8f5ef;
+        border: 1px solid rgba(139, 107, 71, 0.1);
+        transition:
+            box-shadow 300ms ease,
+            transform 300ms ease;
+    }
+
+    .testimonial-card:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+        transform: translateY(-3px);
+    }
+
+    .testimonial-card__mark {
+        font-family: "Playfair Display", serif;
+        font-size: 72px;
+        line-height: 1;
+        color: rgba(139, 107, 71, 0.2);
+        position: absolute;
+        top: 12px;
+        left: 26px;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .testimonial-card__quote {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: #1e2022;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .testimonial-card__caption {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .testimonial-card__author {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #4e5846;
+    }
+
+    .testimonial-card__stay {
+        font-size: 11px;
+        color: rgba(30, 32, 34, 0.45);
+        font-weight: 300;
+    }
+</style>

@@ -8,7 +8,6 @@ import roomsData from "../data/rooms.json";
 import amenitiesData from "../data/amenities.json";
 import testimonialData from "../data/testimonials.json";
 
-// Take the first 3 rooms for the homepage
 const featuredRooms = roomsData.slice(0, 3);
 
 import { Image } from "astro:assets";
@@ -25,125 +24,236 @@ const roomImages = {
 ---
 
 <BaseLayout title="Lumina Stay | Boutique Accommodation Concept">
-	<!-- Hero Section -->
+	<!-- ─────────────────────────────── HERO ─────────────────────────────── -->
 	<section
 		class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
 	>
-		<!-- Placeholder Background Image -->
-		<div class="absolute inset-0 bg-gray-200 z-0">
+		<!-- Full-bleed background -->
+		<div class="absolute inset-0 z-0">
 			<Image
 				src={homeHero}
-				alt="Lumina Stay Interior"
+				alt="Lumina Stay — a serene boutique interior with waterfront views"
 				class="w-full h-full object-cover"
+				loading="eager"
 			/>
 		</div>
-		<div class="absolute inset-0 bg-black/30 z-10"></div>
 
-		<div class="relative z-20 text-center text-white space-y-6 px-4">
+		<!-- Gradient veil: top dark for header contrast + bottom dark for text/CTA legibility -->
+		<div
+			class="absolute inset-0 z-10"
+			style="background: linear-gradient(to bottom, rgba(10,8,6,0.55) 0%, rgba(10,8,6,0.12) 30%, rgba(10,8,6,0.18) 65%, rgba(10,8,6,0.60) 100%);"
+			aria-hidden="true"
+		>
+		</div>
+
+		<!-- Centred content -->
+		<div
+			class="relative z-20 text-center text-white px-6 max-w-3xl mx-auto"
+		>
+			<p
+				class="text-white/55 text-[10px] uppercase tracking-[0.22em] font-medium mb-5"
+			>
+				Boutique · Concept Stay
+			</p>
 			<h1
-				class="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight"
+				class="font-serif text-5xl md:text-7xl lg:text-[86px] text-white leading-[1.05] tracking-tight mb-6"
 			>
 				Lumina Stay
 			</h1>
 			<p
-				class="text-lg md:text-xl font-light tracking-wide max-w-lg mx-auto"
+				class="text-white/65 text-base md:text-lg font-light tracking-wide leading-relaxed mb-10 max-w-md mx-auto"
 			>
 				Where the waterfront meets refined stillness.
 			</p>
-			<div class="pt-8">
+			<div class="flex gap-4 flex-wrap justify-center">
 				<a
 					href="#enquiry"
-					class="bg-white text-cta px-8 py-4 rounded-sm uppercase tracking-widest text-sm font-medium hover:bg-neutral-100 transition-colors"
+					class="inline-flex items-center gap-2 bg-white text-[#162719] px-8 py-4 text-[11px] uppercase tracking-[0.14em] font-semibold hover:bg-[#F8F5EF] transition-colors"
 				>
 					Check Availability
 				</a>
+				<a
+					href={`${import.meta.env.BASE_URL}rooms`}
+					class="inline-flex items-center gap-2 border border-white/40 text-white px-8 py-4 text-[11px] uppercase tracking-[0.14em] font-medium hover:bg-white/10 transition-colors"
+				>
+					Explore Suites
+				</a>
+			</div>
+		</div>
+
+		<!-- Scroll cue -->
+		<div
+			class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
+			aria-hidden="true"
+		>
+			<div class="scroll-line-wrap">
+				<div class="scroll-line-inner"></div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Narrative Section -->
-	<section class="py-24 px-6">
-		<div class="max-w-2xl mx-auto text-center space-y-8">
+	<!-- ─────────────────────────────── NARRATIVE ─────────────────────────── -->
+	<section class="py-28 md:py-36 px-6">
+		<div class="max-w-2xl mx-auto text-center">
 			<span
-				class="text-accent-sage uppercase tracking-widest text-xs font-bold"
-				>The Experience</span
+				class="reveal text-accent-sage uppercase tracking-[0.18em] text-[10px] font-semibold mb-5 block"
 			>
-			<h2 class="font-serif text-4xl text-text leading-tight">
-				Thoughtfully designed spaces for the modern traveler.
+				The Experience
+			</span>
+			<h2
+				class="reveal reveal--delay-1 font-serif text-4xl md:text-5xl text-text leading-tight mb-7"
+			>
+				Thoughtfully designed spaces<br />for the modern traveller.
 			</h2>
-			<p class="text-text/80 leading-relaxed font-light">
+			<p
+				class="reveal reveal--delay-2 text-text/65 leading-relaxed font-light text-[15px] mb-10"
+			>
 				Located in the heart of a fictional city, Lumina Stay offers a
 				sanctuary of calm. Every detail is curated to ensure your stay
-				is as effortless as it is memorable. Immerse yourself in quiet
-				luxury, just moments from the central gardens and the
-				waterfront.
+				is as effortless as it is memorable — quiet luxury, moments from
+				the central gardens and the waterfront.
 			</p>
-			<div>
+			<div class="reveal reveal--delay-3">
 				<a
 					href={`${import.meta.env.BASE_URL}rooms`}
-					class="inline-block border-b border-accent-bronze text-accent-bronze pb-1 text-sm uppercase tracking-wider hover:text-text hover:border-text transition-all"
+					class="inline-flex items-center gap-3 text-accent-bronze text-[11px] uppercase tracking-[0.16em] font-semibold border-b border-accent-bronze/40 pb-1 hover:border-accent-bronze transition-colors"
 				>
 					Discover the Suites
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 14 14"
+						fill="none"
+						aria-hidden="true"
+					>
+						<path
+							d="M2.5 7h9M8 3.5L11.5 7 8 10.5"
+							stroke="currentColor"
+							stroke-width="1.4"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+					</svg>
 				</a>
 			</div>
 		</div>
 	</section>
 
-	<!-- Room Preview -->
-	<section class="py-24 px-6 bg-white">
-		<div class="max-w-7xl mx-auto">
-			<div class="flex justify-between items-end mb-12">
-				<h2 class="font-serif text-3xl">Curated Suites</h2>
+	<!-- Ornamental rule -->
+	<div
+		class="max-w-[80px] mx-auto h-px bg-accent-bronze/25"
+		aria-hidden="true"
+	>
+	</div>
+
+	<!-- ─────────────────────────────── ROOMS ─────────────────────────────── -->
+	<section class="py-28 md:py-36 px-6 md:px-10 bg-white">
+		<div class="max-w-screen-xl mx-auto">
+			<div class="flex justify-between items-end mb-14">
+				<div>
+					<span
+						class="reveal text-accent-sage uppercase tracking-[0.18em] text-[10px] font-semibold mb-3 block"
+					>
+						Accommodation
+					</span>
+					<h2
+						class="reveal reveal--delay-1 font-serif text-3xl md:text-4xl"
+					>
+						Curated Suites
+					</h2>
+				</div>
 				<a
 					href={`${import.meta.env.BASE_URL}rooms`}
-					class="hidden md:inline-block text-sm uppercase tracking-widest text-text/60 hover:text-text transition-colors"
-					>View All</a
+					class="hidden md:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-text/45 hover:text-text transition-colors font-medium"
 				>
+					View All
+					<svg
+						width="12"
+						height="12"
+						viewBox="0 0 12 12"
+						fill="none"
+						aria-hidden="true"
+					>
+						<path
+							d="M2 6h8M7 3l3 3-3 3"
+							stroke="currentColor"
+							stroke-width="1.3"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+					</svg>
+				</a>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				{
-					featuredRooms.map((room) => (
-						<RoomCard
-							name={room.name}
-							priceRange={room.priceRange}
-							image={
-								roomImages[room.id as keyof typeof roomImages]
-							}
-							slug={room.slug}
-							features={room.features}
-						/>
+					featuredRooms.map((room, i) => (
+						<div class={`reveal reveal--delay-${i + 1}`}>
+							<RoomCard
+								name={room.name}
+								priceRange={room.priceRange}
+								image={
+									roomImages[
+										room.id as keyof typeof roomImages
+									]
+								}
+								slug={room.slug}
+								features={room.features}
+							/>
+						</div>
 					))
 				}
 			</div>
 		</div>
 	</section>
 
-	<!-- Amenities Snapshot -->
-	<section class="py-24 px-6 border-t border-neutral-100">
-		<div class="max-w-7xl mx-auto">
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-				<div class="space-y-6">
+	<!-- ─────────────────────────────── AMENITIES ─────────────────────────── -->
+	<section class="py-28 md:py-36 px-6 md:px-10">
+		<div class="max-w-screen-xl mx-auto">
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start"
+			>
+				<div>
 					<span
-						class="text-accent-sage uppercase tracking-widest text-xs font-bold"
-						>Details</span
+						class="reveal text-accent-sage uppercase tracking-[0.18em] text-[10px] font-semibold mb-5 block"
 					>
-					<h2 class="font-serif text-3xl">Effortless Comfort</h2>
-					<p class="text-text/80 font-light leading-relaxed">
+						Details
+					</span>
+					<h2
+						class="reveal reveal--delay-1 font-serif text-3xl md:text-4xl mb-6"
+					>
+						Effortless Comfort
+					</h2>
+					<p
+						class="reveal reveal--delay-2 text-text/65 font-light leading-relaxed text-[15px] mb-8"
+					>
 						We believe true luxury lies in the absence of friction.
 						From high-thread-count linens to our 24/7 virtual
 						concierge, every amenity is chosen to enhance your
 						stillness.
 					</p>
-					<div class="pt-4">
+					<div class="reveal reveal--delay-3">
 						<a
 							href={`${import.meta.env.BASE_URL}amenities`}
-							class="text-xs uppercase tracking-widest font-bold border-b border-text/20 pb-1 hover:border-text transition-all"
-							>View All Amenities</a
+							class="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.16em] font-semibold text-text border-b border-text/20 pb-1 hover:border-text transition-all"
 						>
+							View All Amenities
+							<svg
+								width="13"
+								height="13"
+								viewBox="0 0 14 14"
+								fill="none"
+								aria-hidden="true"
+							>
+								<path
+									d="M2.5 7h9M8 3.5L11.5 7 8 10.5"
+									stroke="currentColor"
+									stroke-width="1.4"
+									stroke-linecap="round"
+									stroke-linejoin="round"></path>
+							</svg>
+						</a>
 					</div>
 				</div>
-				<div>
+				<div class="reveal reveal--delay-2">
 					<FeatureList
 						features={amenitiesData.inRoom.slice(0, 6)}
 						columns={2}
@@ -153,38 +263,85 @@ const roomImages = {
 		</div>
 	</section>
 
-	<!-- Testimonials -->
-	<section class="py-24 px-6 bg-secondary/5">
-		<!-- slightly off-white if needed, or just keep white -->
-		<div class="max-w-7xl mx-auto">
-			<h2 class="font-serif text-3xl text-center mb-16">Guest Notes</h2>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+	<!-- ─────────────────────────────── TESTIMONIALS ─────────────────────────── -->
+	<section class="py-28 md:py-36 px-6 md:px-10 bg-white">
+		<div class="max-w-screen-xl mx-auto">
+			<div class="text-center mb-14">
+				<span
+					class="reveal text-accent-sage uppercase tracking-[0.18em] text-[10px] font-semibold mb-4 block"
+				>
+					Reviews
+				</span>
+				<h2
+					class="reveal reveal--delay-1 font-serif text-3xl md:text-4xl"
+				>
+					Guest Notes
+				</h2>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 				{
-					testimonialData.map((t) => (
-						<TestimonialCard
-							quote={t.quote}
-							author={t.author}
-							stayType={t.stayType}
-						/>
+					testimonialData.map((t, i) => (
+						<div class={`reveal reveal--delay-${i + 1}`}>
+							<TestimonialCard
+								quote={t.quote}
+								author={t.author}
+								stayType={t.stayType}
+							/>
+						</div>
 					))
 				}
 			</div>
 		</div>
 	</section>
 
-	<!-- Contact / Enquiry -->
-	<section id="enquiry" class="py-24 px-6 bg-white">
-		<div class="max-w-xl mx-auto text-center space-y-6 mb-12">
+	<!-- ─────────────────────────────── ENQUIRY ─────────────────────────────── -->
+	<section id="enquiry" class="py-28 md:py-36 px-6 md:px-10 bg-[#F8F5EF]">
+		<div class="max-w-2xl mx-auto text-center mb-14">
 			<span
-				class="text-accent-sage uppercase tracking-widest text-xs font-bold"
-				>Availability</span
+				class="reveal text-accent-sage uppercase tracking-[0.18em] text-[10px] font-semibold mb-5 block"
 			>
-			<h2 class="font-serif text-4xl">Begin Your Stay</h2>
-			<p class="text-text/80 font-light">
-				We prioritize bespoke service. Tell us your preferences, and we
-				will curate the perfect arrangement for you.
+				Availability
+			</span>
+			<h2
+				class="reveal reveal--delay-1 font-serif text-4xl md:text-5xl mb-5"
+			>
+				Begin Your Stay
+			</h2>
+			<p
+				class="reveal reveal--delay-2 text-text/65 font-light text-[15px] leading-relaxed"
+			>
+				We prioritise bespoke service. Tell us your preferences, and our
+				concierge will curate the perfect arrangement for you.
 			</p>
 		</div>
-		<EnquiryForm />
+		<div class="reveal reveal--delay-3">
+			<EnquiryForm />
+		</div>
 	</section>
 </BaseLayout>
+
+<style>
+	/* Scroll cue animation */
+	.scroll-line-wrap {
+		width: 1px;
+		height: 48px;
+		background: rgba(255, 255, 255, 0.2);
+		overflow: hidden;
+	}
+
+	.scroll-line-inner {
+		width: 100%;
+		height: 50%;
+		background: rgba(255, 255, 255, 0.65);
+		animation: scrollLine 1.8s ease-in-out infinite;
+	}
+
+	@keyframes scrollLine {
+		0% {
+			transform: translateY(-100%);
+		}
+		100% {
+			transform: translateY(200%);
+		}
+	}
+</style>
